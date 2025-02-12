@@ -12,7 +12,6 @@ public class DifferentBrowsersTest {
     public void openWebSiteInChrome() {
         WebDriver chromeDriver = new ChromeDriver();
         chromeDriver.manage().window().maximize();
-
         chromeDriver.get("https://google.com");
 
         String title = chromeDriver.getTitle();
