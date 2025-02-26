@@ -1,19 +1,15 @@
 package webelements;
 
+import helper.Config;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
-import java.util.List;
 
 public class LocationDemo {
     private WebDriver driver = null;
@@ -25,18 +21,30 @@ public class LocationDemo {
     }
 
     @Test
-    public void verifySignInTitle() throws InterruptedException {
+    public void loginSmokeTest() throws InterruptedException {
         driver.get("https://www.codewars.com/");
 
         // Click Sign In
-        WebElement signInBtn = driver.findElement(By.id("login-btn"));
+        WebElement loginBtn = driver.findElement(By.id("login-btn"));
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", signInBtn);
+        js.executeScript("arguments[0].click();", loginBtn);
 
         // Verify title
         String expectedTitle = "Sign in | Codewars";
         String actualTitle = driver.getTitle();
         Assert.assertEquals(actualTitle, expectedTitle);
+
+        // Fill credentials
+        WebElement email = driver.findElement(By.id("user_email"));
+        WebElement password = driver.findElement(By.id("user_password"));
+
+        email.sendKeys(Config.get("codewars_login"));
+        password.sendKeys(Config.get("codewars_password"));
+
+        // Click Sign in
+        WebElement signInBtn = driver.findElement(By.xpath("//button[text()='Sign in']"));
+        signInBtn.click();
+
     }
 
     @AfterMethod
