@@ -16,8 +16,7 @@ public class XPathClass extends BaseTest {
 
     @Test
     public void absoluteXPath() throws InterruptedException {
-        WebElement getStartedBtn = driver.findElement(By.xpath("/html/body/div/main/header/div/div/div/div[1]/div/div[3]/a"));
-        getStartedBtn.click();
+        driver.findElement(By.xpath("/html/body/div/main/header/div/div/div/div[1]/div/div[3]/a")).click();
         Thread.sleep(3000);
     }
 
