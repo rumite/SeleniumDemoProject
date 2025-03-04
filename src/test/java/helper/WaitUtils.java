@@ -14,4 +14,9 @@ public class WaitUtils {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
         return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
+
+    public static void waitForElementNotPresented(WebDriver driver, By locator, int timeOutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
 }
